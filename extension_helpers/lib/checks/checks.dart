@@ -1,0 +1,3 @@
+library;
+
+part 'string.dart';

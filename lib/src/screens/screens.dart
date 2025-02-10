@@ -1,0 +1,9 @@
+export 'splashscreen/page.dart';
+export 'main/guest_page.dart';
+export 'main/admin_page.dart';
+export 'main/staff_page.dart';
+export 'not_found/outer_page.dart';
+export 'not_found/inner_page.dart';
+export 'login/page.dart';
+export 'forgot_password/page.dart';
+export 'register/page.dart';

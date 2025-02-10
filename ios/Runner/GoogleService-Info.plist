@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>214623807126-6o61d2onsj4j58t91ohchohqcclb75a5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.214623807126-6o61d2onsj4j58t91ohchohqcclb75a5</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBFLYE12FgpmmrInl_OAsc-z11MyEruElA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>214623807126</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.codeblock.nosk</string>
+	<key>PROJECT_ID</key>
+	<string>nosk-classic</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nosk-classic.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:214623807126:ios:ba80f6206b1f6bd48304b7</string>
+</dict>
+</plist>
