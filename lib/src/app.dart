@@ -13,7 +13,7 @@ final AppTheme appTheme = AppTheme(
     primaryColor: const Color(0xff224CF0),
     primaryColorDark: const Color(0xff224CF0),
     primaryColorLight: const Color(0xff224CF0),
-    background: const Color(0xffdddde9),
+    background: const Color(0xffEAEAEA),
     backgroundDark: const Color(0xff141416),
     error: const Color(0xffd51134),
     errorContainer: const Color(0xffe5899a),
@@ -69,6 +69,7 @@ class App extends StatelessWidget {
             GuestMainPage.route.page(),
             AdminMainPage.route.page(),
             StaffMainPage.route.page(),
+            AccountPage.route.page(),
           ],
           onInit: () {
             AuthLogic.put;

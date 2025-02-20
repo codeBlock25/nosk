@@ -9,6 +9,7 @@ import 'package:nosk/generated/assets.dart';
 import 'package:nosk/src/route/route.dart';
 import 'package:nosk/src/screens/login/page.dart';
 import 'package:pinput/pinput.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:tinycolor2/tinycolor2.dart';
 import 'package:validatorless/validatorless.dart';
@@ -112,266 +113,336 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       ),
     );
     return Scaffold(
-      appBar: AppBar(),
-      backgroundColor: context.theme.scaffoldBackgroundColor.darken(),
-      body: Column(
-        children: <Widget>[
-          Image.asset(
-            Assets.iconsIcon,
-            fit: BoxFit.fitHeight,
-            height: 45.cl(50, 100),
-          ).marginOnly(
-            top: 5.cl(5, 10),
-            bottom: 10.cl(10, 20),
-          ),
-          Text(
-            'Reset your Account.',
-            style: context.textTheme.headlineMedium,
-            textAlign: TextAlign.center,
-          ).center,
-          10.cl(10, 20).hSpacer,
-          Text(
-            'Forgot your password, confirm your details to reset your password.',
-            style: context.textTheme.bodySmall,
-            textAlign: TextAlign.center,
-          ).center.addOpacity(0.6),
-          20.cl(10, 80).hSpacer,
-          Obx(() {
-            if (status.value == ResetStatus.pending) {
-              return Form(
-                key: _pendingFormStateKey,
-                child: Column(
+      backgroundColor: context.theme.scaffoldBackgroundColor,
+      body: Stack(
+        children: [
+          Row(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset(
+                    Assets.iconsIcon,
+                    fit: BoxFit.fitHeight,
+                    height: 45.cl(50, 100),
+                  ).marginOnly(
+                    top: 5.cl(5, 10),
+                    bottom: 10.cl(10, 20),
+                  ),
+                  Text(
+                    'Reset your Account.',
+                    style: context.textTheme.headlineMedium,
+                    textAlign: TextAlign.center,
+                  ).center,
+                  10.cl(10, 20).hSpacer,
+                  Text(
+                    'Forgot your password, confirm your details to reset your password.',
+                    style: context.textTheme.bodySmall,
+                    textAlign: TextAlign.center,
+                  ).center.addOpacity(0.6),
+                  20.cl(10, 80).hSpacer,
+                  Obx(() {
+                    if (status.value == ResetStatus.pending) {
+                      return Form(
+                        key: _pendingFormStateKey,
+                        child: Column(
+                          children: [
+                            Text(
+                              'Email',
+                              style: context.textTheme.headlineSmall,
+                            ).align(
+                              alignment: Alignment.centerLeft,
+                            ),
+                            10.cl(10, 20).hSpacer,
+                            TextFormField(
+                              controller: emailController,
+                              style: context.textTheme.bodySmall,
+                              validator: Validatorless.multiple([
+                                Validatorless.required(
+                                    'This field is required'),
+                                Validatorless.email('Invalid email'),
+                              ]),
+                              autofillHints: <String>[
+                                AutofillHints.email,
+                                AutofillHints.username
+                              ],
+                              textCapitalization: TextCapitalization.none,
+                              keyboardType: TextInputType.emailAddress,
+                              textInputAction: TextInputAction.continueAction,
+                              decoration: InputDecoration(
+                                hintText: 'Enter your email.',
+                                prefixIcon: HeroIcon(
+                                  HeroIcons.envelope,
+                                  style: HeroIconStyle.outline,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                    if (status.value == ResetStatus.confirming) {
+                      return Form(
+                        key: _confirmingFormStateKey,
+                        child: Directionality(
+                          // Specify direction if desired
+                          textDirection: TextDirection.ltr,
+                          child: Pinput(
+                            // You can pass your own SmsRetriever implementation based on any package
+                            // in this example we are using the SmartAuth
+                            keyboardType: TextInputType.number,
+                            smsRetriever: smsRetriever,
+                            controller: pinController,
+                            focusNode: focusNode,
+                            defaultPinTheme: defaultPinTheme,
+                            separatorBuilder: (index) =>
+                                const SizedBox(width: 8),
+                            validator: Validatorless.multiple([
+                              Validatorless.required('This field is required.'),
+                              Validatorless.number(
+                                  'Your code should be numbers only'),
+                              Validatorless.length(4, '4 Digits are required.')
+                            ]),
+                            hapticFeedbackType: HapticFeedbackType.lightImpact,
+                            onCompleted: (pin) {
+                              debugPrint('onCompleted: $pin');
+                            },
+                            onChanged: (value) {
+                              debugPrint('onChanged: $value');
+                            },
+                            cursor: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.only(bottom: 9),
+                                  width: 22,
+                                  height: 1,
+                                  color: focusedBorderColor,
+                                ),
+                              ],
+                            ),
+                            focusedPinTheme: defaultPinTheme.copyWith(
+                              decoration: defaultPinTheme.decoration!.copyWith(
+                                color: context.theme.scaffoldBackgroundColor
+                                    .darken(2),
+                                borderRadius: 8.cl(10, 20).rc.brAll,
+                                border: Border.all(
+                                  color: context.theme.primaryColor,
+                                  width: 2.cl(2, 4),
+                                ),
+                              ),
+                            ),
+                            submittedPinTheme: defaultPinTheme.copyWith(
+                              decoration: defaultPinTheme.decoration!.copyWith(
+                                color: fillColor,
+                                borderRadius: BorderRadius.circular(19),
+                                border: Border.all(
+                                  color: context.theme.primaryColor,
+                                  width: 2.cl(2, 4),
+                                ),
+                              ),
+                            ),
+                            errorPinTheme: defaultPinTheme.copyBorderWith(
+                              border: Border.all(color: Colors.redAccent),
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                    return Form(
+                      key: _saveFormStateKey,
+                      child: Column(
+                        children: <Widget>[
+                          Obx(
+                            () => TextFormField(
+                              controller: passwordController,
+                              style: context.textTheme.bodySmall,
+                              obscureText: isPasswordHidden.isTrue,
+                              autofillHints: <String>[
+                                AutofillHints.newPassword
+                              ],
+                              keyboardType: TextInputType.visiblePassword,
+                              onFieldSubmitted: (_) => onSubmit(),
+                              textInputAction: TextInputAction.done,
+                              validator: Validatorless.multiple([
+                                Validatorless.required(
+                                    "This field can't be empty"),
+                                Validatorless.min(
+                                  6,
+                                  'Password must be more than 6 characters long.',
+                                ),
+                                Validatorless.regex(
+                                  RegExp('[0-9]'),
+                                  'Password should contain at least one number.',
+                                ),
+                                Validatorless.regex(
+                                  RegExp('[A-Z]'),
+                                  'Password should contain at least one uppercase.',
+                                ),
+                                Validatorless.regex(
+                                  RegExp('[a-z]'),
+                                  'Password should contain at least one lowercase.',
+                                ),
+                              ]),
+                              decoration: InputDecoration(
+                                prefixIcon: HeroIcon(
+                                  HeroIcons.lockClosed,
+                                  style: HeroIconStyle.outline,
+                                ),
+                                hintText: 'Enter new password',
+                                suffixIcon: IconButton(
+                                  onPressed: isPasswordHidden.toggle,
+                                  style: ButtonStyle(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: 40.cl(40, 80).rc.brAll,
+                                    ).all,
+                                  ),
+                                  icon: isPasswordHidden.isTrue.when(
+                                    use: HeroIcon(HeroIcons.eye),
+                                    elseUse: HeroIcon(HeroIcons.eyeSlash),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          10.cl(10, 20).hSpacer,
+                          Obx(
+                            () => TextFormField(
+                              controller: confirmPasswordController,
+                              style: context.textTheme.bodySmall,
+                              obscureText: isPasswordHidden.isTrue,
+                              autofillHints: <String>[
+                                AutofillHints.password,
+                                AutofillHints.newPassword
+                              ],
+                              keyboardType: TextInputType.visiblePassword,
+                              onFieldSubmitted: (_) => onSubmit(),
+                              textInputAction: TextInputAction.done,
+                              validator: Validatorless.compare(
+                                passwordController,
+                                'Passwords must match.',
+                              ),
+                              decoration: InputDecoration(
+                                  prefixIcon: HeroIcon(
+                                    HeroIcons.lockClosed,
+                                    style: HeroIconStyle.outline,
+                                  ),
+                                  hintText: 'Confirm password'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+                  20.cl(10, 40).hSpacer,
+                  ElevatedButton(
+                    onPressed: onSubmit,
+                    style: ButtonStyle(
+                        fixedSize: Size(60.cw(200, 350), 30.cl(30, 50)).all),
+                    child: Obx(
+                      () => Text(
+                        status.value == ResetStatus.pending
+                            ? 'SEND RESET CODE'
+                            : status.value == ResetStatus.confirming
+                                ? 'CONFIRM'
+                                : 'SAVE RESET',
+                      ),
+                    ),
+                  ),
+                  30.cl(10, 80).hSpacer,
+                  RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      text: "Remembered your details?, ",
+                      style: context.textTheme.bodySmall?.copyWith(
+                        color: context.textTheme.bodySmall?.color?.lighten(30),
+                      ),
+                      children: [
+                        TextSpan(
+                          text: "Login.",
+                          style: context.textTheme.headlineSmall?.copyWith(
+                            color: context.theme.primaryColor,
+                            decoration: TextDecoration.underline,
+                            decorationThickness: 2.cl(2, 4),
+                            decorationColor: context.theme.primaryColor
+                                .withValues(alpha: 0.5),
+                            decorationStyle: TextDecorationStyle.solid,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = LoginPage.route.stepBackAndTo,
+                        ),
+                      ],
+                    ),
+                  ).center,
+                  30.cl(20, 70).hSpacer,
+                ],
+              ).contain(
+                width: 100.cw(100, 500),
+                height: 100.h,
+                color: context.theme.scaffoldBackgroundColor,
+                padding: 20.cl(15, 50).pdX,
+              ),
+              if (context.breakpoint.largerOrEqualTo(TABLET))
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      'Email',
-                      style: context.textTheme.headlineSmall,
-                    ).align(
-                      alignment: Alignment.centerLeft,
+                      'Smart Hospitality, Seamless Experience.',
+                      style: context.textTheme.headlineLarge
+                          ?.copyWith(color: Colors.white),
+                      textAlign: TextAlign.right,
                     ),
-                    10.cl(10, 20).hSpacer,
-                    TextFormField(
-                      controller: emailController,
-                      style: context.textTheme.bodySmall,
-                      validator: Validatorless.multiple([
-                        Validatorless.required('This field is required'),
-                        Validatorless.email('Invalid email'),
-                      ]),
-                      autofillHints: <String>[
-                        AutofillHints.email,
-                        AutofillHints.username
-                      ],
-                      textCapitalization: TextCapitalization.none,
-                      keyboardType: TextInputType.emailAddress,
-                      textInputAction: TextInputAction.continueAction,
-                      decoration: InputDecoration(
-                        hintText: 'Enter your email.',
-                        prefixIcon: HeroIcon(
-                          HeroIcons.envelope,
-                          style: HeroIconStyle.outline,
-                        ),
-                      ),
+                    Text(
+                      'Streamline bookings, automate check-ins, and enhance guest experiences—all in one place.',
+                      style: context.textTheme.bodyMedium
+                          ?.copyWith(color: Colors.white),
+                      textAlign: TextAlign.right,
                     ),
                   ],
-                ),
-              );
-            }
-            if (status.value == ResetStatus.confirming) {
-              return Form(
-                key: _confirmingFormStateKey,
-                child: Directionality(
-                  // Specify direction if desired
-                  textDirection: TextDirection.ltr,
-                  child: Pinput(
-                    // You can pass your own SmsRetriever implementation based on any package
-                    // in this example we are using the SmartAuth
-                    keyboardType: TextInputType.number,
-                    smsRetriever: smsRetriever,
-                    controller: pinController,
-                    focusNode: focusNode,
-                    defaultPinTheme: defaultPinTheme,
-                    separatorBuilder: (index) => const SizedBox(width: 8),
-                    validator: Validatorless.multiple([
-                      Validatorless.required('This field is required.'),
-                      Validatorless.number('Your code should be numbers only'),
-                      Validatorless.length(4, '4 Digits are required.')
-                    ]),
-                    hapticFeedbackType: HapticFeedbackType.lightImpact,
-                    onCompleted: (pin) {
-                      debugPrint('onCompleted: $pin');
-                    },
-                    onChanged: (value) {
-                      debugPrint('onChanged: $value');
-                    },
-                    cursor: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 9),
-                          width: 22,
-                          height: 1,
-                          color: focusedBorderColor,
-                        ),
-                      ],
-                    ),
-                    focusedPinTheme: defaultPinTheme.copyWith(
-                      decoration: defaultPinTheme.decoration!.copyWith(
-                        color: context.theme.scaffoldBackgroundColor.darken(2),
-                        borderRadius: 8.cl(10, 20).rc.brAll,
-                        border: Border.all(
-                          color: context.theme.primaryColor,
-                          width: 2.cl(2, 4),
-                        ),
-                      ),
-                    ),
-                    submittedPinTheme: defaultPinTheme.copyWith(
-                      decoration: defaultPinTheme.decoration!.copyWith(
-                        color: fillColor,
-                        borderRadius: BorderRadius.circular(19),
-                        border: Border.all(
-                          color: context.theme.primaryColor,
-                          width: 2.cl(2, 4),
-                        ),
-                      ),
-                    ),
-                    errorPinTheme: defaultPinTheme.copyBorderWith(
-                      border: Border.all(color: Colors.redAccent),
-                    ),
-                  ),
-                ),
-              );
-            }
-            return Form(
-              key: _saveFormStateKey,
-              child: Column(
-                children: <Widget>[
-                  Obx(
-                    () => TextFormField(
-                      controller: passwordController,
-                      style: context.textTheme.bodySmall,
-                      obscureText: isPasswordHidden.isTrue,
-                      autofillHints: <String>[AutofillHints.newPassword],
-                      keyboardType: TextInputType.visiblePassword,
-                      onFieldSubmitted: (_) => onSubmit(),
-                      textInputAction: TextInputAction.done,
-                      validator: Validatorless.multiple([
-                        Validatorless.required("This field can't be empty"),
-                        Validatorless.min(
-                          6,
-                          'Password must be more than 6 characters long.',
-                        ),
-                        Validatorless.regex(
-                          RegExp('[0-9]'),
-                          'Password should contain at least one number.',
-                        ),
-                        Validatorless.regex(
-                          RegExp('[A-Z]'),
-                          'Password should contain at least one uppercase.',
-                        ),
-                        Validatorless.regex(
-                          RegExp('[a-z]'),
-                          'Password should contain at least one lowercase.',
-                        ),
-                      ]),
-                      decoration: InputDecoration(
-                        prefixIcon: HeroIcon(
-                          HeroIcons.lockClosed,
-                          style: HeroIconStyle.outline,
-                        ),
-                        hintText: 'Enter new password',
-                        suffixIcon: IconButton(
-                          onPressed: isPasswordHidden.toggle,
-                          style: ButtonStyle(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: 40.cl(40, 80).rc.brAll,
-                            ).all,
+                )
+                    .contain(
+                      width: 100.w,
+                      height: 100.h,
+                      padding: 10.cl(10, 40).pdAll.copyWith(
+                            left: context.breakpoint.largerOrEqualTo(DESKTOP)
+                                ? 24.cw(70, 440)
+                                : 10.cw(70, 440),
+                            bottom: 10.cw(70, 240),
                           ),
-                          icon: isPasswordHidden.isTrue.when(
-                            use: HeroIcon(HeroIcons.eye),
-                            elseUse: HeroIcon(HeroIcons.eyeSlash),
-                          ),
+                      margin: 10.cl(10, 40).pdAll,
+                      decoration: BoxDecoration(
+                        color: context.theme.primaryColor.darken(45),
+                        borderRadius: 10.cl(10, 20).brcCircle,
+                        image: DecorationImage(
+                          image: AssetImage(Assets.imagesPattern),
+                          alignment: Alignment.center,
+                          fit: BoxFit.cover,
+                          opacity: 0.6,
                         ),
                       ),
-                    ),
-                  ),
-                  10.cl(10, 20).hSpacer,
-                  Obx(
-                    () => TextFormField(
-                      controller: confirmPasswordController,
-                      style: context.textTheme.bodySmall,
-                      obscureText: isPasswordHidden.isTrue,
-                      autofillHints: <String>[
-                        AutofillHints.password,
-                        AutofillHints.newPassword
-                      ],
-                      keyboardType: TextInputType.visiblePassword,
-                      onFieldSubmitted: (_) => onSubmit(),
-                      textInputAction: TextInputAction.done,
-                      validator: Validatorless.compare(
-                        passwordController,
-                        'Passwords must match.',
-                      ),
-                      decoration: InputDecoration(
-                          prefixIcon: HeroIcon(
-                            HeroIcons.lockClosed,
-                            style: HeroIconStyle.outline,
-                          ),
-                          hintText: 'Confirm password'),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          }),
-          20.cl(10, 40).hSpacer,
-          ElevatedButton(
-            onPressed: onSubmit,
-            style: ButtonStyle(
-                fixedSize: Size(60.cw(200, 350), 30.cl(30, 50)).all),
-            child: Obx(
-              () => Text(
-                status.value == ResetStatus.pending
-                    ? 'SEND RESET CODE'
-                    : status.value == ResetStatus.confirming
-                        ? 'CONFIRM'
-                        : 'SAVE RESET',
-              ),
-            ),
+                    )
+                    .expand,
+            ],
           ),
-          30.cl(10, 80).hSpacer,
-          RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
-              text: "Remembered your details?, ",
-              style: context.textTheme.bodySmall?.copyWith(
-                color: context.textTheme.bodySmall?.color?.lighten(30),
-              ),
-              children: [
-                TextSpan(
-                  text: "Login.",
-                  style: context.textTheme.headlineSmall?.copyWith(
-                    color: context.theme.primaryColor,
-                    decoration: TextDecoration.underline,
-                    decorationThickness: 2.cl(2, 4),
-                    decorationColor:
-                        context.theme.primaryColor.withValues(alpha: 0.5),
-                    decorationStyle: TextDecorationStyle.solid,
-                  ),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = LoginPage.route.stepBackAndTo,
-                ),
-              ],
+          IconButton(
+            onPressed: Get.back,
+            style: ButtonStyle(
+              backgroundColor: context.theme.scaffoldBackgroundColor.darken().all,
+              fixedSize: Size(
+                20.cl(30, 75),
+                20.cl(30, 75),
+              ).all,
+              
             ),
-          ).center,
-          30.cl(20, 70).hSpacer,
+            icon: HeroIcon(HeroIcons.chevronLeft),
+          ).marginOnly(top: 15.cl(10, 35), left: 10.cl(10, 35))
         ],
       )
-          .scrollable()
-          .contain(
-            width: 100.cw(100, 500),
+          .sized(
+            width: 100.w,
             height: 100.h,
-            color: context.theme.scaffoldBackgroundColor,
-            padding: 20.cl(15, 50).pdX,
-            margin: ((100.w - 100.cw(100, 500)) / 2).pdX,
           )
           .gestureHandler(
             onTap: context.focus.unfocus,

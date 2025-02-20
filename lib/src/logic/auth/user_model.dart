@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_model.g.dart';
@@ -25,11 +26,34 @@ class UserModel {
   String? email;
   UserType? type;
 
-  @TimestampConverter()
-  Timestamp? createdAt;
+  get fullName =>
+      '${firstName ?? ''} ${lastName ?? ''} ${otherNames ?? ''}'.trim();
 
-  @TimestampConverter()
-  Timestamp? updatedAt;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  User? user;
+
+  @JsonKey(
+    toJson: _toJson,
+    fromJson: _fromJson,
+  )
+  DateTime? createdAt;
+
+  @JsonKey(
+    toJson: _toJson,
+    fromJson: _fromJson,
+  )
+  DateTime? updatedAt;
+
+  static String? _toJson(DateTime? value) => value?.toIso8601String();
+
+  static DateTime? _fromJson(dynamic json) {
+    if (json is Timestamp) {
+      return json.toDate();
+    } else if (json is String) {
+      return DateTime.tryParse(json);
+    }
+    return null;
+  }
 
   UserModel({
     this.value,
@@ -49,16 +73,6 @@ class UserModel {
 
   /// Connect the generated [_$UserModelToFrom] function to the `toJson` method.
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
-}
-
-class TimestampConverter implements JsonConverter<Timestamp, DateTime> {
-  const TimestampConverter();
-
-  @override
-  Timestamp fromJson(DateTime json) => Timestamp.fromDate(json);
-
-  @override
-  DateTime toJson(Timestamp object) => object.toDate();
 }
 
 class UserTypeConverter implements JsonConverter<UserType, String> {

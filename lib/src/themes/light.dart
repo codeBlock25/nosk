@@ -51,7 +51,7 @@ ThemeData _lightTheme(AppThemePalette palette) {
       ),
       labelStyle: TextStyle(
         fontSize: 12.cl(12, 18),
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w600,
         color: palette.textColorLight,
       ),
       tabAlignment: TabAlignment.fill,
@@ -63,7 +63,7 @@ ThemeData _lightTheme(AppThemePalette palette) {
       centerTitle: false,
       titleTextStyle: TextStyle(
         fontSize: 16.cl(16, 22),
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w600,
         color: palette.textColorLight,
       ),
       iconTheme: IconThemeData(
@@ -176,9 +176,7 @@ ThemeData _lightTheme(AppThemePalette palette) {
             )
             .all,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            40.cl(5, 106),
-          ),
+          borderRadius: 8.cl(8, 17).rc.brAll,
           side: BorderSide(
             color: palette.primaryColor,
             width: 2.cl(2, 4),
@@ -220,9 +218,7 @@ ThemeData _lightTheme(AppThemePalette palette) {
             )
             .all,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            40.cl(50, 90),
-          ),
+          borderRadius: 8.cl(8, 17).rc.brAll,
         ).all,
       ),
     ),
@@ -259,32 +255,32 @@ ThemeData _lightTheme(AppThemePalette palette) {
     textTheme: TextTheme(
       titleLarge: TextStyle(
         fontSize: 24.cl(24, 28),
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w600,
         color: palette.textColorLight,
       ),
       titleMedium: TextStyle(
         fontSize: 22.cl(22, 34),
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w600,
         color: palette.textColorLight,
       ),
       titleSmall: TextStyle(
         fontSize: 20.cl(20, 30),
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w600,
         color: palette.textColorLight,
       ),
       headlineLarge: TextStyle(
         fontSize: 22.cl(24, 32),
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w600,
         color: palette.textColorLight,
       ),
       headlineMedium: TextStyle(
         fontSize: 18.cl(12, 22),
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w600,
         color: palette.textColorLight,
       ),
       headlineSmall: TextStyle(
         fontSize: 15.cl(14, 18),
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w600,
         color: palette.textColorLight,
       ),
       bodyLarge: TextStyle(
@@ -346,7 +342,7 @@ ThemeData _lightTheme(AppThemePalette palette) {
       suffixIconColor: palette.primaryColor.withValues(alpha: 0.7),
       hoverColor: palette.primaryColor.withValues(alpha: 0.05),
       errorBorder: OutlineInputBorder(
-        borderRadius: 40.cl(40, 90).rc.brAll,
+        borderRadius: 8.cl(8, 17).rc.brAll,
         borderSide: BorderSide(
           width: 2.sp,
           color: palette.error,
@@ -358,7 +354,7 @@ ThemeData _lightTheme(AppThemePalette palette) {
       iconColor: Colors.grey[900],
       filled: true,
       enabledBorder: OutlineInputBorder(
-        borderRadius: 40.cl(40, 90).rc.brAll,
+        borderRadius: 8.cl(8, 17).rc.brAll,
         borderSide: BorderSide(
           width: 2.sp,
           color: Colors.grey[600]!,
@@ -373,21 +369,21 @@ ThemeData _lightTheme(AppThemePalette palette) {
         color: Colors.grey[600]!,
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: 40.cl(40, 90).rc.brAll,
+        borderRadius: 8.cl(8, 17).rc.brAll,
         borderSide: BorderSide(
           width: 2.sp,
           color: palette.primaryColor,
         ),
       ),
       border: OutlineInputBorder(
-        borderRadius: 40.cl(40, 90).rc.brAll,
+        borderRadius: 8.cl(8, 17).rc.brAll,
         borderSide: BorderSide(
           width: 2.sp,
           color: palette.primaryColor.withValues(alpha: 0.4),
         ),
       ),
       disabledBorder: OutlineInputBorder(
-        borderRadius: 40.cl(40, 90).rc.brAll,
+        borderRadius: 8.cl(8, 17).rc.brAll,
         borderSide: BorderSide(
           width: 2.sp,
           color: Colors.grey[400]!,

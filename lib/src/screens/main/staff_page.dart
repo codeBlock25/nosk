@@ -219,7 +219,7 @@ class _GuestMainPageState extends State<StaffMainPage> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: AccountPage.route.goto,
             icon: HeroIcon(
               HeroIcons.userCircle,
               size: 20.cl(20, 44),

@@ -14,10 +14,8 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       otherNames: json['otherNames'] as String?,
       email: json['email'] as String?,
       type: $enumDecodeNullable(_$UserTypeEnumMap, json['type']),
-      createdAt: _$JsonConverterFromJson<DateTime, Timestamp>(
-          json['createdAt'], const TimestampConverter().fromJson),
-      updatedAt: _$JsonConverterFromJson<DateTime, Timestamp>(
-          json['updatedAt'], const TimestampConverter().fromJson),
+      createdAt: UserModel._fromJson(json['createdAt']),
+      updatedAt: UserModel._fromJson(json['updatedAt']),
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
@@ -28,10 +26,8 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'otherNames': instance.otherNames,
       'email': instance.email,
       'type': _$UserTypeEnumMap[instance.type],
-      'createdAt': _$JsonConverterToJson<DateTime, Timestamp>(
-          instance.createdAt, const TimestampConverter().toJson),
-      'updatedAt': _$JsonConverterToJson<DateTime, Timestamp>(
-          instance.updatedAt, const TimestampConverter().toJson),
+      'createdAt': UserModel._toJson(instance.createdAt),
+      'updatedAt': UserModel._toJson(instance.updatedAt),
     };
 
 const _$UserTypeEnumMap = {
@@ -39,15 +35,3 @@ const _$UserTypeEnumMap = {
   UserType.staff: 'staff',
   UserType.admin: 'admin',
 };
-
-Value? _$JsonConverterFromJson<Json, Value>(
-  Object? json,
-  Value? Function(Json json) fromJson,
-) =>
-    json == null ? null : fromJson(json as Json);
-
-Json? _$JsonConverterToJson<Json, Value>(
-  Value? value,
-  Json? Function(Value value) toJson,
-) =>
-    value == null ? null : toJson(value);

@@ -17,7 +17,15 @@ class UserLogic extends GetxController {
     userStore = FirebaseFirestore.instance.collection(_key);
   }
 
-  addUser(UserModel user) async {
-    await userStore.doc(user.email).set(user.toJson());
+  addUser(UserModel user, String uid) async {
+    await userStore.add(user.toJson());
+  }
+
+  Future<UserModel?> getUser(String uid) async {
+    return userStore.where('value', isEqualTo:  uid).limit(1).get().then((val) {
+          return val.docs.firstOrNull?.data() != null
+              ? UserModel.fromJson(val.docs.first.data())
+              : null;
+        });
   }
 }

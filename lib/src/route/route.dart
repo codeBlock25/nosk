@@ -15,7 +15,9 @@ abstract class RouteFulWidget extends StatefulWidget {
   String title();
 
   @protected
-  Transition transition() => Transition.rightToLeftWithFade;
+  Transition transition() => GetPlatform.isIOS || GetPlatform.isAndroid
+      ? Transition.rightToLeftWithFade
+      : Transition.fadeIn;
 
   @override
   @protected

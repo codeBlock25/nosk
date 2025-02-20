@@ -8,6 +8,8 @@ class Assets {
   static const String iconsIcon = 'assets/icons/icon.png';
   static const String iconsIndrive = 'assets/icons/indrive.png';
   static const String iconsUber = 'assets/icons/uber.png';
+  static const String imagesError = 'assets/images/error.png';
   static const String imagesFlutterLogo = 'assets/images/flutter_logo.png';
+  static const String imagesPattern = 'assets/images/pattern.png';
 
 }

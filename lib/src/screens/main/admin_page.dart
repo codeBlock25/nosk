@@ -7,6 +7,7 @@ import 'package:heroicons/heroicons.dart';
 import 'package:nosk/generated/assets.dart';
 import 'package:nosk/src/app.dart';
 import 'package:nosk/src/route/route.dart';
+import 'package:nosk/src/screens/screens.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:tinycolor2/tinycolor2.dart';
@@ -263,7 +264,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: AccountPage.route.goto,
             icon: HeroIcon(
               HeroIcons.userCircle,
               size: 20.cl(20, 44),
