@@ -7,4 +7,6 @@ export 'not_found/inner_page.dart';
 export 'login/page.dart';
 export 'forgot_password/page.dart';
 export 'register/page.dart';
+export 'password_security/page.dart';
+export 'personal_information/page.dart';
 export 'account/page.dart';

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -17,9 +18,10 @@ enum UserType {
 }
 
 @JsonSerializable()
+@CopyWith()
 class UserModel {
   String? value;
-  String? username;
+  String? phoneNumber;
   String? firstName;
   String? lastName;
   String? otherNames;
@@ -57,7 +59,7 @@ class UserModel {
 
   UserModel({
     this.value,
-    this.username,
+    this.phoneNumber,
     this.firstName,
     this.lastName,
     this.otherNames,

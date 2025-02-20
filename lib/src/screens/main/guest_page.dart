@@ -41,7 +41,7 @@ class _GuestMainPageState extends State<GuestMainPage> {
       AppTab(
         label: 'Home',
         page: Container(
-          color: Colors.red,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -50,7 +50,7 @@ class _GuestMainPageState extends State<GuestMainPage> {
       AppTab(
         label: 'Book a room',
         page: Container(
-          color: Colors.blue,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -59,7 +59,7 @@ class _GuestMainPageState extends State<GuestMainPage> {
       AppTab(
         label: 'My Reservations',
         page: Container(
-          color: Colors.black,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -68,7 +68,7 @@ class _GuestMainPageState extends State<GuestMainPage> {
       AppTab(
         label: 'Hotel Services',
         page: Container(
-          color: Colors.green,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -77,7 +77,7 @@ class _GuestMainPageState extends State<GuestMainPage> {
       AppTab(
         label: 'Bar/Restaurant',
         page: Container(
-          color: Colors.brown,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -86,7 +86,7 @@ class _GuestMainPageState extends State<GuestMainPage> {
       AppTab(
         label: 'Facility Map',
         page: Container(
-          color: Colors.purple,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -95,7 +95,7 @@ class _GuestMainPageState extends State<GuestMainPage> {
       AppTab(
         label: 'Bill',
         page: Container(
-          color: Colors.deepOrange,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -298,6 +298,9 @@ class _GuestMainPageState extends State<GuestMainPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (context.breakpoint.largerOrEqualTo(TABLET)) {
+      return Scaffold();
+    }
     return Scaffold(
       key: _scaffoldKey,
       drawerEnableOpenDragGesture: true,

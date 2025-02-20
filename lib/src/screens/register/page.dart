@@ -60,7 +60,7 @@ class _RegisterPageState extends State<RegisterPage> {
           throw Exception('Invalid account.');
         }
         var user = UserModel(
-          username: userCredential.user?.displayName ?? '',
+          phoneNumber: phoneNumberController.text,
           value: userCredential.user?.uid ?? '',
           email: emailController.text,
           firstName: firstNameController.text,
@@ -413,10 +413,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  // Headline: “Smart Hospitality, Seamless Experience.”
-                  //     •	Subtext: “Manage rooms, guests, and staff efficiently with our powerful hotel management system.”
-                  //           Text('Effortless Hotel Management, Simplified.'),
-                  //           Text('Streamline bookings, automate check-ins, and enhance guest experiences—all in one place.'),
                   Text(
                     'Smart Hospitality, Seamless Experience.',
                     style: context.textTheme.headlineLarge

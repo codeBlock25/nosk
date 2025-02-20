@@ -9,12 +9,12 @@ class UserLogic extends GetxController {
 
   late final CollectionReference<Map<String, dynamic>> userStore;
 
-  final _key = 'Users';
+  static final key = 'Users';
 
   @override
   void onInit() {
     super.onInit();
-    userStore = FirebaseFirestore.instance.collection(_key);
+    userStore = FirebaseFirestore.instance.collection(key);
   }
 
   addUser(UserModel user, String uid) async {

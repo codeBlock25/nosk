@@ -14,11 +14,11 @@ extension PaddingSizingDouble on num {
       }();
 
   EdgeInsets pdXY(num padding) {
-    return EdgeInsets.symmetric(horizontal: toDouble(), vertical: toDouble());
+    return EdgeInsets.symmetric(horizontal: toDouble(), vertical: padding.toDouble());
   }
 
   EdgeInsets pdYX(num padding) {
-    return EdgeInsets.symmetric(vertical: toDouble(), horizontal: toDouble());
+    return EdgeInsets.symmetric(vertical: toDouble(), horizontal: padding.toDouble());
   }
 
   EdgeInsets get pdL => () {

@@ -254,47 +254,47 @@ ThemeData _lightTheme(AppThemePalette palette) {
     ),
     textTheme: TextTheme(
       titleLarge: TextStyle(
-        fontSize: 24.cl(24, 28),
+        fontSize: 24.cl(24, 36),
         fontWeight: FontWeight.w600,
         color: palette.textColorLight,
       ),
       titleMedium: TextStyle(
-        fontSize: 22.cl(22, 34),
+        fontSize: 22.cl(22, 32),
         fontWeight: FontWeight.w600,
         color: palette.textColorLight,
       ),
       titleSmall: TextStyle(
-        fontSize: 20.cl(20, 30),
+        fontSize: 20.cl(20, 28),
         fontWeight: FontWeight.w600,
         color: palette.textColorLight,
       ),
       headlineLarge: TextStyle(
-        fontSize: 22.cl(24, 32),
+        fontSize: 22.cl(24, 26),
         fontWeight: FontWeight.w600,
         color: palette.textColorLight,
       ),
       headlineMedium: TextStyle(
-        fontSize: 18.cl(12, 22),
+        fontSize: 18.cl(16, 20),
         fontWeight: FontWeight.w600,
         color: palette.textColorLight,
       ),
       headlineSmall: TextStyle(
-        fontSize: 15.cl(14, 18),
+        fontSize: 14.cl(14, 16),
         fontWeight: FontWeight.w600,
         color: palette.textColorLight,
       ),
       bodyLarge: TextStyle(
-        fontSize: 22.cl(24, 32),
+        fontSize: 22.cl(24, 30),
         fontWeight: FontWeight.w400,
         color: palette.textColorLight,
       ),
       bodyMedium: TextStyle(
-        fontSize: 18.cl(12, 22),
+        fontSize: 18.cl(12, 20),
         fontWeight: FontWeight.w400,
         color: palette.textColorLight,
       ),
       bodySmall: TextStyle(
-        fontSize: 15.cl(14, 18),
+        fontSize: 14.cl(14, 16),
         fontWeight: FontWeight.w400,
         color: palette.textColorLight,
       ),
@@ -309,7 +309,7 @@ ThemeData _lightTheme(AppThemePalette palette) {
         color: Colors.white,
       ),
       labelSmall: TextStyle(
-        fontSize: 15.cl(14, 18),
+        fontSize: 14.cl(14, 18),
         fontWeight: FontWeight.w600,
         color: Colors.white,
       ),
@@ -326,8 +326,10 @@ ThemeData _lightTheme(AppThemePalette palette) {
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
-      contentPadding:
-          EdgeInsets.symmetric(horizontal: 10.cl(5, 25), vertical: 2.cl(2, 20)),
+      contentPadding: EdgeInsets.symmetric(
+        horizontal: 10.cl(5, 25),
+        vertical: 2.cl(2, 20),
+      ),
       labelStyle: TextStyle(
         fontSize: 15.cl(14, 18),
         color: palette.primaryColor,

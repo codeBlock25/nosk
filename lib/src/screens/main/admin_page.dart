@@ -40,7 +40,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
       AppTab(
         label: 'Dashboard',
         page: Container(
-          color: Colors.green,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -49,7 +49,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
       AppTab(
         label: 'Reservations Management',
         page: Container(
-          color: Colors.blue,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -58,7 +58,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
       AppTab(
         label: 'Room Management',
         page: Container(
-          color: Colors.deepPurple,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -67,7 +67,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
       AppTab(
         label: 'Staff Management',
         page: Container(
-          color: Colors.orange,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -76,7 +76,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
       AppTab(
         label: 'Guest Management',
         page: Container(
-          color: Colors.teal,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -85,7 +85,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
       AppTab(
         label: 'Billing & Payments',
         page: Container(
-          color: Colors.brown,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -94,7 +94,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
       AppTab(
         label: 'Reports & Analytics',
         page: Container(
-          color: Colors.indigo,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -103,7 +103,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
       AppTab(
         label: 'Promotions & Discounts',
         page: Container(
-          color: Colors.pink,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -112,7 +112,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
       AppTab(
         label: 'Security & Access Control',
         page: Container(
-          color: Colors.red,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -121,7 +121,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
       AppTab(
         label: 'Feedback & Reviews',
         page: Container(
-          color: Colors.lime,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),

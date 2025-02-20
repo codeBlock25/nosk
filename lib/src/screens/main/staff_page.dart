@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:google_fonts/google_fonts.dart';
 import 'package:extension_helpers/extension_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,7 +41,7 @@ class _GuestMainPageState extends State<StaffMainPage> {
       AppTab(
         label: 'Dashboard',
         page: Container(
-          color: Colors.green,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -49,7 +50,7 @@ class _GuestMainPageState extends State<StaffMainPage> {
       AppTab(
         label: 'Check-in & Check-out',
         page: Container(
-          color: Colors.orange,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -58,7 +59,7 @@ class _GuestMainPageState extends State<StaffMainPage> {
       AppTab(
         label: 'Housekeeping',
         page: Container(
-          color: Colors.purple,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -67,7 +68,7 @@ class _GuestMainPageState extends State<StaffMainPage> {
       AppTab(
         label: 'Room Service Requests',
         page: Container(
-          color: Colors.brown,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -76,7 +77,7 @@ class _GuestMainPageState extends State<StaffMainPage> {
       AppTab(
         label: 'Hotel Policies',
         page: Container(
-          color: Colors.blueGrey,
+          color: Colors.transparent,
           width: 100.w,
           height: 100.h,
         ),
@@ -101,6 +102,125 @@ class _GuestMainPageState extends State<StaffMainPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (context.breakpoint.largerOrEqualTo(TABLET)) {
+      return Scaffold(
+        body: Row(
+          children: [
+            Obx(
+              () => ListView(
+                padding: 0.pdAll,
+                physics: const ClampingScrollPhysics(),
+                children: [
+                  context.mediaQueryPadding.top.hSpacer,
+                  Row(
+                    children: [
+                      Image.asset(
+                        Assets.iconsIcon,
+                        width: 18.cl(20, 40),
+                      ),
+                      10.cl(10, 20).wSpacer,
+                      Text(
+                        'NOSK',
+                        style: GoogleFonts.lato(
+                          textStyle: context.textTheme.headlineMedium,
+                        ),
+                      ),
+                    ],
+                  ).marginSymmetric(
+                    vertical: 10.cl(10, 20),
+                    horizontal: 10.cl(10, 20),
+                  ),
+                  ..._tabs.map((tab) {
+                    final int index = _tabs.indexOf(tab);
+                    final isSelected = selectedTab.value == index;
+                    return Material(
+                      color: Colors.transparent,
+                      child: ListTile(
+                        onTap: () {
+                          if (tab.onTap == null) {
+                            selectedTab.value = index;
+                            Get.back();
+                          } else {
+                            tab.onTap?.call();
+                          }
+                        },
+                        titleTextStyle: context.textTheme.bodySmall?.copyWith(
+                          color: isSelected.when(
+                            use: Colors.white,
+                            elseUse: appTheme.palette.textColorLight,
+                          ),
+                        ),
+                        tileColor: isSelected.when(
+                          use: context.theme.primaryColor,
+                          elseUse: Colors.transparent,
+                        ),
+                        selected: isSelected.isTrue,
+                        selectedColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: 10.cl(10, 18).brcAll,
+                        ),
+                        hoverColor: isSelected.when(
+                          use: context.theme.primaryColor.darken(),
+                          elseUse: context.theme.primaryColor.lighten(20),
+                        ),
+                        splashColor: isSelected.when(
+                          use: Colors.white.withValues(alpha: 0.1),
+                          elseUse:
+                              context.theme.primaryColor.withValues(alpha: 0.2),
+                        ),
+                        selectedTileColor: context.theme.primaryColor,
+                        leading: tab.iconWidget(isSelected),
+                        title: Text(tab.label),
+                      ),
+                    ).marginSymmetric(
+                      horizontal: 10.cl(5, 40),
+                      vertical: 5.cl(5, 10),
+                    );
+                  })
+                ],
+              ),
+            ).contain(
+              width: 20.cw(200, 450),
+              height: 100.h,
+              margin: 10.cl(5, 22).pdAll,
+              decoration: BoxDecoration(
+                color: context.theme.scaffoldBackgroundColor.darken(),
+                borderRadius: 10.cl(10, 20).brcCircle,
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                TextButton.icon(
+                  onPressed: AccountPage.route.goto,
+                  icon: HeroIcon(HeroIcons.user),
+                  style: ButtonStyle(
+                    padding: 15.cl(12, 35).pdXY(12.cl(5, 30)).all,
+                  ),
+                  label: Text(
+                    'Setting',
+                    style: context.textTheme.headlineSmall,
+                  ),
+                ).marginOnly(
+                  top: 10.cl(10, 20),
+                  right: 10.cl(10, 20),
+                ),
+                PageView.builder(
+                  controller: _pageController,
+                  scrollDirection: Axis.vertical,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: _tabs.where((tab) => tab.page != null).length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final tab = _tabs.elementAt(index);
+                    return tab.page ?? 0.hSpacer;
+                  },
+                ).expand
+              ],
+            ).expand
+          ],
+        ).sized(width: 100.w, height: 100.h),
+      );
+    }
     return Scaffold(
       key: _scaffoldKey,
       drawerEnableOpenDragGesture: true,

@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"11a8dd36640640d884995a895d955f96","collectionName":"ledger_split","type":"collection"}
