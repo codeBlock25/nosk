@@ -1,1 +1,0 @@
-{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"key":{"sale":{"$numberInt":"1"}},"name":"sale_1","background":true,"unique":true}],"uuid":"256eee6f638c4494b7dd0250b63afde8","collectionName":"dosages","type":"collection"}

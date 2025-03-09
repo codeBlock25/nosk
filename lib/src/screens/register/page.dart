@@ -167,7 +167,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     ],
                     textCapitalization: TextCapitalization.words,
                     keyboardType: TextInputType.name,
-                    textInputAction: TextInputAction.continueAction,
+                    textInputAction: GetPlatform.isAndroid
+                        ? TextInputAction.next
+                        : TextInputAction.continueAction,
                     decoration: InputDecoration(
                       hintText: 'Enter your first name e.g Jane',
                       prefixIcon: HeroIcon(
@@ -193,7 +195,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     autofillHints: <String>[AutofillHints.familyName],
                     textCapitalization: TextCapitalization.none,
                     keyboardType: TextInputType.name,
-                    textInputAction: TextInputAction.continueAction,
+                    textInputAction: GetPlatform.isAndroid
+                        ? TextInputAction.next
+                        : TextInputAction.continueAction,
                     decoration: InputDecoration(
                       hintText: 'Enter your Last name e.g Deo',
                       prefixIcon: HeroIcon(
@@ -221,7 +225,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     ],
                     textCapitalization: TextCapitalization.none,
                     keyboardType: TextInputType.emailAddress,
-                    textInputAction: TextInputAction.continueAction,
+                    textInputAction: GetPlatform.isAndroid
+                        ? TextInputAction.next
+                        : TextInputAction.continueAction,
                     decoration: InputDecoration(
                       hintText: 'Enter your email e.g example@nosk.com',
                       prefixIcon: HeroIcon(
@@ -255,7 +261,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     ],
                     textCapitalization: TextCapitalization.none,
                     keyboardType: TextInputType.phone,
-                    textInputAction: TextInputAction.continueAction,
+                    textInputAction: GetPlatform.isAndroid
+                        ? TextInputAction.next
+                        : TextInputAction.continueAction,
                     decoration: InputDecoration(
                       hintText: 'Enter your phone number e.g +23480.....',
                       prefixIcon: HeroIcon(

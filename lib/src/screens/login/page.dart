@@ -42,6 +42,7 @@ class _LoginPageState extends State<LoginPage> {
   bool isLoading = false;
 
   Future<void> onSubmit() async {
+    context.focus.unfocus();
     setState(() {
       isLoading = true;
     });
@@ -276,7 +277,9 @@ class _LoginPageState extends State<LoginPage> {
                 ],
                 textCapitalization: TextCapitalization.none,
                 keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.continueAction,
+                textInputAction: GetPlatform.isAndroid
+                    ? TextInputAction.next
+                    : TextInputAction.continueAction,
                 decoration: InputDecoration(
                   hintText: 'Enter your account email.',
                   prefixIcon: HeroIcon(

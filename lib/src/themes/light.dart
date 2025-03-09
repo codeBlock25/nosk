@@ -60,6 +60,7 @@ ThemeData _lightTheme(AppThemePalette palette) {
     appBarTheme: AppBarTheme(
       elevation: 0,
       backgroundColor: palette.background,
+      surfaceTintColor: palette.background,
       centerTitle: false,
       titleTextStyle: TextStyle(
         fontSize: 16.cl(16, 22),
@@ -106,7 +107,7 @@ ThemeData _lightTheme(AppThemePalette palette) {
       style: ButtonStyle(
         backgroundColor: Colors.transparent.all,
         overlayColor: palette.primaryColor.withValues(alpha: 0.2).all,
-        elevation: 2.sp.all,
+        elevation: 2.cl(1, 3).all,
         foregroundColor: palette.primaryColor.all,
         iconColor: palette.primaryColor.all,
         textStyle: TextStyle(
@@ -132,7 +133,7 @@ ThemeData _lightTheme(AppThemePalette palette) {
       style: ButtonStyle(
         backgroundColor: Colors.transparent.all,
         overlayColor: palette.primaryColor.withValues(alpha: 0.1).all,
-        elevation: 2.sp.all,
+        elevation: 2.cl(1, 3).all,
         foregroundColor: palette.primaryColor.all,
         surfaceTintColor: palette.primaryColor.withValues(alpha: 0.2).all,
         iconColor: palette.primaryColor.all,
@@ -159,7 +160,7 @@ ThemeData _lightTheme(AppThemePalette palette) {
       style: ButtonStyle(
         backgroundColor: Colors.transparent.all,
         overlayColor: palette.primaryColor.withValues(alpha: 0.1).all,
-        elevation: 2.sp.all,
+        elevation: 2.cl(1, 3).all,
         foregroundColor: palette.primaryColor.all,
         surfaceTintColor: palette.primaryColor.withValues(alpha: 0.2).all,
         iconColor: palette.primaryColor.all,
@@ -201,7 +202,7 @@ ThemeData _lightTheme(AppThemePalette palette) {
         }),
         overlayColor:
             palette.primaryColor.darken(10).withValues(alpha: 0.2).all,
-        elevation: 2.sp.all,
+        elevation: 2.cl(1, 3).all,
         foregroundColor: Colors.white.all,
         surfaceTintColor: palette.primaryColor.withValues(alpha: 0.2).all,
         iconColor: Colors.white.all,
@@ -243,8 +244,8 @@ ThemeData _lightTheme(AppThemePalette palette) {
       trackColor: palette.primaryColor.lighten(30).all,
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: palette.primaryColor.lighten(20),
-      foregroundColor: palette.primaryColor.darken(10),
+      backgroundColor: palette.primaryColor,
+      foregroundColor: palette.textColorDark,
       elevation: 4.cl(4, 10),
       focusColor: palette.primaryColor.lighten(10),
       focusElevation: 7.cl(4, 16),
@@ -346,7 +347,7 @@ ThemeData _lightTheme(AppThemePalette palette) {
       errorBorder: OutlineInputBorder(
         borderRadius: 8.cl(8, 17).rc.brAll,
         borderSide: BorderSide(
-          width: 2.sp,
+          width: 2.cl(1, 3),
           color: palette.error,
         ),
       ),
@@ -358,36 +359,36 @@ ThemeData _lightTheme(AppThemePalette palette) {
       enabledBorder: OutlineInputBorder(
         borderRadius: 8.cl(8, 17).rc.brAll,
         borderSide: BorderSide(
-          width: 2.sp,
+          width: 2.cl(1, 3),
           color: Colors.grey[600]!,
         ),
       ),
       activeIndicatorBorder: BorderSide(
-        width: 2.sp,
+        width: 2.cl(1, 3),
         color: palette.primaryColor,
       ),
       outlineBorder: BorderSide(
-        width: 2.sp,
+        width: 2.cl(1, 3),
         color: Colors.grey[600]!,
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: 8.cl(8, 17).rc.brAll,
         borderSide: BorderSide(
-          width: 2.sp,
+          width: 2.cl(1, 3),
           color: palette.primaryColor,
         ),
       ),
       border: OutlineInputBorder(
         borderRadius: 8.cl(8, 17).rc.brAll,
         borderSide: BorderSide(
-          width: 2.sp,
+          width: 2.cl(1, 3),
           color: palette.primaryColor.withValues(alpha: 0.4),
         ),
       ),
       disabledBorder: OutlineInputBorder(
         borderRadius: 8.cl(8, 17).rc.brAll,
         borderSide: BorderSide(
-          width: 2.sp,
+          width: 2.cl(1, 3),
           color: Colors.grey[400]!,
         ),
       ),

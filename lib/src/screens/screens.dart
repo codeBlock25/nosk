@@ -10,3 +10,5 @@ export 'register/page.dart';
 export 'password_security/page.dart';
 export 'personal_information/page.dart';
 export 'account/page.dart';
+export 'rooms/create.dart';
+export 'rooms/page.dart';

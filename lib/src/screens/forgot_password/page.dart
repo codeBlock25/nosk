@@ -1,4 +1,5 @@
 import 'package:extension_helpers/extension_helpers.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:nosk/generated/assets.dart';
+import 'package:nosk/src/logic/auth/logic.dart';
 import 'package:nosk/src/route/route.dart';
 import 'package:nosk/src/screens/login/page.dart';
 import 'package:pinput/pinput.dart';
@@ -39,6 +41,7 @@ class ForgotPasswordPage extends RouteFulWidget {
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   RxBool isPasswordHidden = true.obs;
   late final SmsRetriever smsRetriever;
+  final AuthLogic _authLogic = AuthLogic.to;
   Rx<ResetStatus> status = ResetStatus.pending.obs;
   final TextEditingController pinController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -46,30 +49,78 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   late final FocusNode focusNode;
   final TextEditingController confirmPasswordController =
       TextEditingController();
+  RxBool isLoading = false.obs;
 
   final GlobalKey<FormState> _pendingFormStateKey = GlobalKey<FormState>();
   final GlobalKey<FormState> _confirmingFormStateKey = GlobalKey<FormState>();
   final GlobalKey<FormState> _saveFormStateKey = GlobalKey<FormState>();
 
   Future<void> onSubmit() async {
-    if (status.value == ResetStatus.pending) {
-      if (_pendingFormStateKey.currentState?.validate() ?? false) {
-        status.value = ResetStatus.confirming;
+    if (isLoading.isTrue) return;
+    isLoading.value = true;
+    try {
+      if (status.value == ResetStatus.pending) {
+        if (_pendingFormStateKey.currentState?.validate() ?? false) {
+          await _authLogic.firebaseAuth
+              .sendPasswordResetEmail(email: emailController.text);
+          if (mounted) {
+            context.toast(
+              toastMessage:
+                  'Reset link sent, please follow link to reset your password',
+              type: ToastSnackBarType.success,
+            );
+            (LoginPage.route.stepBackAndTo).delay(duration: 2.seconds);
+          }
+          // status.value = ResetStatus.confirming;
+          return;
+        }
+      }
+      if (status.value == ResetStatus.confirming) {
+        if (_confirmingFormStateKey.currentState?.validate() ?? false) {
+          await _authLogic.firebaseAuth
+              .verifyPasswordResetCode(pinController.text);
+          status.value = ResetStatus.save;
+          return;
+        }
+      }
+      if (_saveFormStateKey.currentState?.validate() ?? false) {
+        await _authLogic.firebaseAuth.confirmPasswordReset(
+          code: pinController.text,
+          newPassword: passwordController.text,
+        );
+        LoginPage.route.stepBackAndTo();
+        if (mounted) {
+          context.toast(
+            toastMessage: 'Password reset successful',
+            type: ToastSnackBarType.success,
+          );
+        }
+      }
+    } on FirebaseAuthException catch (error) {
+      if (error.code == 'user-not-found') {
+        if (mounted) {
+          context.toast(
+            toastMessage: 'Account does not exist, please check again.',
+            type: ToastSnackBarType.danger,
+          );
+        }
         return;
       }
-    }
-    if (status.value == ResetStatus.confirming) {
-      if (_confirmingFormStateKey.currentState?.validate() ?? false) {
-        status.value = ResetStatus.save;
-        return;
+      if (mounted) {
+        context.toast(
+          toastMessage: error.message ?? error.code,
+          type: ToastSnackBarType.danger,
+        );
       }
-    }
-    if (_saveFormStateKey.currentState?.validate() ?? false) {
-      LoginPage.route.stepBackAndTo();
-      context.toast(
-        toastMessage: 'Password reset successful',
-        type: ToastSnackBarType.success,
-      );
+    } catch (error) {
+      if (mounted) {
+        context.toast(
+          toastMessage: 'Error resetting password, please try again.',
+          type: ToastSnackBarType.danger,
+        );
+      }
+    } finally {
+      isLoading.value = false;
     }
   }
 
@@ -168,7 +219,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                               ],
                               textCapitalization: TextCapitalization.none,
                               keyboardType: TextInputType.emailAddress,
-                              textInputAction: TextInputAction.continueAction,
+                              textInputAction: GetPlatform.isAndroid
+                                  ? TextInputAction.next
+                                  : TextInputAction.continueAction,
                               decoration: InputDecoration(
                                 hintText: 'Enter your email.',
                                 prefixIcon: HeroIcon(
@@ -335,17 +388,30 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     );
                   }),
                   20.cl(10, 40).hSpacer,
-                  ElevatedButton(
-                    onPressed: onSubmit,
-                    style: ButtonStyle(
-                        fixedSize: Size(60.cw(200, 350), 30.cl(30, 50)).all),
-                    child: Obx(
-                      () => Text(
-                        status.value == ResetStatus.pending
-                            ? 'SEND RESET CODE'
-                            : status.value == ResetStatus.confirming
-                                ? 'CONFIRM'
-                                : 'SAVE RESET',
+                  Obx(
+                    () => ElevatedButton.icon(
+                      onPressed: isLoading.isFalse.whenOnly(use: onSubmit),
+                      icon: isLoading.isTrue.whenOnly(
+                        use: CircularProgressIndicator(
+                          backgroundColor:
+                              context.theme.primaryColor.lighten(20),
+                          color: Colors.white,
+                          strokeWidth: 2.cl(2, 4),
+                        ).sized(
+                          width: 18.cl(20, 34),
+                          height: 18.cl(20, 34),
+                        ),
+                      ),
+                      style: ButtonStyle(
+                          fixedSize: Size(60.cw(200, 350), 30.cl(30, 50)).all),
+                      label: Obx(
+                        () => Text(
+                          status.value == ResetStatus.pending
+                              ? 'SEND RESET CODE'
+                              : status.value == ResetStatus.confirming
+                                  ? 'CONFIRM'
+                                  : 'SAVE RESET',
+                        ),
                       ),
                     ),
                   ),
@@ -429,15 +495,17 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           IconButton(
             onPressed: Get.back,
             style: ButtonStyle(
-              backgroundColor: context.theme.scaffoldBackgroundColor.darken().all,
+              backgroundColor:
+                  context.theme.scaffoldBackgroundColor.darken().all,
               fixedSize: Size(
                 20.cl(30, 75),
                 20.cl(30, 75),
               ).all,
-              
             ),
             icon: HeroIcon(HeroIcons.chevronLeft),
-          ).marginOnly(top: 15.cl(10, 35), left: 10.cl(10, 35))
+          ).marginOnly(
+              top: 15.cl(10, 35).plus(context.mediaQueryPadding.top).toDouble(),
+              left: 10.cl(10, 35))
         ],
       )
           .sized(

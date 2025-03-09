@@ -57,11 +57,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
       ),
       AppTab(
         label: 'Room Management',
-        page: Container(
-          color: Colors.transparent,
-          width: 100.w,
-          height: 100.h,
-        ),
+        page: RoomsPage(),
         icon: Icons.hotel,
       ),
       AppTab(
