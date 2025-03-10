@@ -321,12 +321,9 @@ class _GuestMainPageState extends State<GuestMainPage> {
                   Image.asset(
                     Assets.iconsIcon,
                     width: 30.cl(35, 100),
-                  ),
+                    fit: BoxFit.fitHeight,
+                  ).expand,
                   10.cl(10, 20).wSpacer,
-                  Text(
-                    "Apple's Field",
-                    style: context.textTheme.headlineMedium,
-                  ),
                   const Spacer(),
                   IconButton(
                     onPressed: Get.back,
