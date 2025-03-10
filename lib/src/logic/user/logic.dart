@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:nosk/src/logic/auth/logic.dart';
 import 'package:nosk/src/logic/auth/user_model.dart';
+import 'package:nosk/src/screens/login/page.dart';
 
 class UserLogic extends GetxController {
   static UserLogic get to => Get.find<UserLogic>();
@@ -31,7 +32,10 @@ class UserLogic extends GetxController {
     if (acc.user == null) {
       throw Exception('Error creating user');
     }
+
     await userStore.doc(acc.user!.uid).set(user.toJson());
+    await authLogic.firebaseAuth.signOut();
+    LoginPage.route.startAt();
   }
 
   Stream<QuerySnapshot<UserModel>> getUsers({required UserType type}) {

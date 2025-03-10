@@ -50,7 +50,6 @@ class RoomLogic extends GetxController {
     }
   }
 
-
   updateRoom({
     required RoomModel newRoom,
   }) async {

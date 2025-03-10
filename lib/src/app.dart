@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide ScreenType;
 import 'package:nosk/src/logic/logic.dart';
 import 'package:nosk/src/logic/room/logic.dart';
+import 'package:nosk/src/logic/room_stay/logic.dart';
+import 'package:nosk/src/logic/services/logic.dart';
 import 'package:nosk/src/logic/user/logic.dart';
 import 'package:nosk/src/screens/screens.dart';
 import 'package:nosk/src/themes/themes.dart';
@@ -77,11 +79,14 @@ class App extends StatelessWidget {
             RoomDetailPage.route.page(),
             EditRoomPage.route.page(),
             CreateUserPage.route.page(),
+            CreateAdminPage.route.page(),
           ],
           onInit: () {
             AuthLogic.put;
             UserLogic.put;
             RoomLogic.put;
+            ServiceLogic.put;
+            RoomStayLogic.put;
           },
           color: Colors.blue,
           themeMode: ThemeMode.light,

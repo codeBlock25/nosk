@@ -66,6 +66,11 @@ class _AdminMainPageState extends State<AdminMainPage> {
         icon: Icons.people,
       ),
       AppTab(
+        label: 'Admin Management',
+        page: AdminsPage(),
+        icon: Icons.people,
+      ),
+      AppTab(
         label: 'Guest Management',
         page: Container(
           color: Colors.transparent,

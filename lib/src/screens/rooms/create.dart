@@ -139,6 +139,24 @@ class _CreateRoomPageState extends State<CreateRoomPage> {
             files.add(downloadUrl);
           }
         }
+        if (files.length != _selectedFiles.length) {
+          if (mounted) {
+            context.toast(
+              toastMessage: 'Error uploading images, please try again',
+              type: ToastSnackBarType.danger,
+            );
+          }
+          return;
+        }
+        await Future.wait(
+          files.map(
+            (file) => cloudinary.destroy(
+              'dvid1qlwp',
+              url: file,
+              resourceType: CloudinaryResourceType.image,
+            ),
+          ),
+        );
 
         final newRoom = RoomModel(
           name: _roomNameController.text,

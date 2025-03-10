@@ -49,29 +49,17 @@ class _GuestMainPageState extends State<StaffMainPage> {
       ),
       AppTab(
         label: 'Check-in & Check-out',
-        page: Container(
-          color: Colors.transparent,
-          width: 100.w,
-          height: 100.h,
-        ),
+        page: CheckInOut(),
         icon: Icons.login, // or Icons.logout for check-out
       ),
       AppTab(
         label: 'Housekeeping',
-        page: Container(
-          color: Colors.transparent,
-          width: 100.w,
-          height: 100.h,
-        ),
+        page: HouseKeepingPage(),
         icon: Icons.cleaning_services,
       ),
       AppTab(
         label: 'Room Service Requests',
-        page: Container(
-          color: Colors.transparent,
-          width: 100.w,
-          height: 100.h,
-        ),
+        page: RoomServicePage(),
         icon: Icons.room_service,
       ),
       AppTab(

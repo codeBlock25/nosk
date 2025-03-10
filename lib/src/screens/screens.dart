@@ -16,3 +16,8 @@ export 'rooms/detail.dart';
 export 'rooms/edit.dart';
 export 'staffs/create.dart';
 export 'staffs/page.dart';
+export 'admins/create.dart';
+export 'admins/page.dart';
+export 'house_keeping/page.dart';
+export 'room_service/page.dart';
+export 'check_in_out/page.dart';
