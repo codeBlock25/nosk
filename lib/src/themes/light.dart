@@ -328,8 +328,8 @@ ThemeData _lightTheme(AppThemePalette palette) {
     ),
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: EdgeInsets.symmetric(
-        horizontal: 10.cl(5, 25),
-        vertical: 2.cl(2, 20),
+        horizontal: 15.cl(15, 30),
+        vertical: 5.cl(2, 20),
       ),
       labelStyle: TextStyle(
         fontSize: 15.cl(14, 18),

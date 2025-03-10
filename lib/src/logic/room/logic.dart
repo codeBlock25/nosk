@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:nosk/src/logic/error.dart';
 import 'package:nosk/src/logic/room/room_model.dart';
@@ -38,7 +37,30 @@ class RoomLogic extends GetxController {
       await store.doc(newRoom.name.toLowerCase().trim()).set(newRoom.toJson());
       return '${newRoom.name.capitalize ?? ''} Room added successfully.';
     } on AppError catch (error) {
-      debugPrint(error.toString());
+      throw Exception(error.message);
+    } on FirebaseException catch (error) {
+      throw Exception(
+        error.message ??
+            'Ops!, An error occurred, please check you internet connection.',
+      );
+    } catch (error) {
+      throw Exception(
+        'Ops!, An unexpected error occurred, please retry action or contact support for further assistance.',
+      );
+    }
+  }
+
+
+  updateRoom({
+    required RoomModel newRoom,
+  }) async {
+    try {
+      if (!(await exist(name: newRoom.name))) {
+        throw AppError(message: 'Room not found');
+      }
+      await store.doc(newRoom.name.toLowerCase().trim()).set(newRoom.toJson());
+      return '${newRoom.name.capitalize ?? ''} Room added successfully.';
+    } on AppError catch (error) {
       throw Exception(error.message);
     } on FirebaseException catch (error) {
       throw Exception(
@@ -58,6 +80,16 @@ class RoomLogic extends GetxController {
           fromFirestore: RoomModel.fromFirestore,
           toFirestore: (RoomModel room, _) => room.toJson(),
         )
+        .snapshots();
+  }
+
+  Stream<DocumentSnapshot<RoomModel>> getRoom(String roomName) {
+    return store
+        .withConverter(
+          fromFirestore: RoomModel.fromFirestore,
+          toFirestore: (RoomModel room, _) => room.toJson(),
+        )
+        .doc(roomName.toLowerCase().trim())
         .snapshots();
   }
 }

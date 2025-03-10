@@ -6,4 +6,5 @@ import 'package:intl/intl.dart';
 part 'date.dart';
 part 'money.dart';
 part 'list.dart';
+part 'string.dart';
 part 'bool.dart';

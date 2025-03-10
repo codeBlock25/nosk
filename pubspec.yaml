@@ -12,20 +12,22 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  cloudinary: ^1.2.0
+  dio: ^5.8.0+1
   copy_with_extension: ^6.0.0
   firebase_core: ^3.11.0
   cloud_firestore: ^5.6.3
   firebase_auth: ^5.4.2
   google_sign_in: ^6.2.2
   google_fonts: ^6.2.1
+  file_picker: ^9.0.2
+  path_provider: ^2.1.5
   firebase_app_check: ^0.3.2+4
-  flutter_localizations:
-    sdk: flutter
   url_launcher: ^6.3.1
   extension_helpers:
   animations: ^2.0.11
   badges: ^3.1.2
+  intl: ^0.20.2
   connectivity_plus: ^6.1.2
   cached_network_image: ^3.4.1
   chopper: ^8.0.4
@@ -34,6 +36,7 @@ dependencies:
   flutter_svg: ^2.0.17
   get: ^4.6.6
   get_storage: ^2.1.1
+  firebase_storage: ^12.4.4
   validatorless: ^1.2.4
   responsive_framework: ^1.5.1
   pinput: ^5.0.1
@@ -61,7 +64,7 @@ flutter:
   uses-material-design: true
 
   # Enable generation of localized Strings from arb files.
-  generate: true
+#  generate: true
 
   assets:
     # Add assets from the images directory to the application.

@@ -12,3 +12,5 @@ export 'personal_information/page.dart';
 export 'account/page.dart';
 export 'rooms/create.dart';
 export 'rooms/page.dart';
+export 'rooms/detail.dart';
+export 'rooms/edit.dart';

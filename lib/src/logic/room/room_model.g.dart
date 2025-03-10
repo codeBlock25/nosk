@@ -15,7 +15,6 @@ RoomModel _$RoomModelFromJson(Map<String, dynamic> json) => RoomModel(
       images:
           (json['images'] as List<dynamic>).map((e) => e as String).toList(),
       price: (json['price'] as num).toDouble(),
-      roomCount: (json['roomCount'] as num).toInt(),
       roomNumber: (json['roomNumber'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
@@ -28,7 +27,6 @@ Map<String, dynamic> _$RoomModelToJson(RoomModel instance) => <String, dynamic>{
       'description': instance.description,
       'price': instance.price,
       'isAvailable': instance.isAvailable,
-      'roomCount': instance.roomCount,
       'images': instance.images,
       'amenities': instance.amenities,
       'roomNumber': instance.roomNumber,

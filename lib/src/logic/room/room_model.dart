@@ -9,7 +9,6 @@ class RoomModel {
   final String description;
   final double price;
   final bool isAvailable;
-  final int roomCount;
   final List<String> images;
   final List<String> amenities;
   final List<String> roomNumber;
@@ -45,7 +44,6 @@ class RoomModel {
     required this.amenities,
     required this.images,
     required this.price,
-    required this.roomCount,
     required this.roomNumber,
     required this.createdAt,
     required this.updatedAt,
@@ -71,7 +69,6 @@ class RoomModel {
       images: data?['images'] is Iterable ? List.from(data?['images']) : [],
       isAvailable: data?['isAvailable'],
       price: data?['price'],
-      roomCount: data?['roomCount'],
       createdAt: _fromJson(data?['createdAt']),
       updatedAt: _fromJson(data?['updatedAt']),
       roomNumber: data?['roomNumber'] is Iterable ? List.from(data?['roomNumber']) : [],
