@@ -76,6 +76,7 @@ class App extends StatelessWidget {
             CreateRoomPage.route.page(),
             RoomDetailPage.route.page(),
             EditRoomPage.route.page(),
+            CreateUserPage.route.page(),
           ],
           onInit: () {
             AuthLogic.put;

@@ -14,3 +14,5 @@ export 'rooms/create.dart';
 export 'rooms/page.dart';
 export 'rooms/detail.dart';
 export 'rooms/edit.dart';
+export 'staffs/create.dart';
+export 'staffs/page.dart';

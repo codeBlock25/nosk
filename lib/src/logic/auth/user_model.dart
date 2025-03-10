@@ -75,6 +75,14 @@ class UserModel {
 
   /// Connect the generated [_$UserModelToFrom] function to the `toJson` method.
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
+
+  factory UserModel.fromFirestore(
+      DocumentSnapshot<Map<String, dynamic>> snapshot,
+      SnapshotOptions? options,
+      ) {
+    final data = snapshot.data();
+    return UserModel.fromJson(data!);
+  }
 }
 
 class UserTypeConverter implements JsonConverter<UserType, String> {
@@ -86,4 +94,5 @@ class UserTypeConverter implements JsonConverter<UserType, String> {
 
   @override
   String toJson(UserType object) => object.value;
+
 }

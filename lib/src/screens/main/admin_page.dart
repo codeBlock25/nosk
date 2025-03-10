@@ -62,11 +62,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
       ),
       AppTab(
         label: 'Staff Management',
-        page: Container(
-          color: Colors.transparent,
-          width: 100.w,
-          height: 100.h,
-        ),
+        page: UsersPage(),
         icon: Icons.people,
       ),
       AppTab(
@@ -95,24 +91,6 @@ class _AdminMainPageState extends State<AdminMainPage> {
           height: 100.h,
         ),
         icon: Icons.bar_chart,
-      ),
-      AppTab(
-        label: 'Promotions & Discounts',
-        page: Container(
-          color: Colors.transparent,
-          width: 100.w,
-          height: 100.h,
-        ),
-        icon: Icons.local_offer,
-      ),
-      AppTab(
-        label: 'Security & Access Control',
-        page: Container(
-          color: Colors.transparent,
-          width: 100.w,
-          height: 100.h,
-        ),
-        icon: Icons.security,
       ),
       AppTab(
         label: 'Feedback & Reviews',
