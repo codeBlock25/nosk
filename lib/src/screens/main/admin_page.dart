@@ -148,7 +148,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
                   ),
                   10.cl(10, 20).wSpacer,
                   Text(
-                    'Nosk',
+                    "Apple's Field",
                     style: context.textTheme.headlineMedium,
                   ),
                   const Spacer(),

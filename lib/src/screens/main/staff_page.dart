@@ -108,7 +108,7 @@ class _GuestMainPageState extends State<StaffMainPage> {
                       ),
                       10.cl(10, 20).wSpacer,
                       Text(
-                        'NOSK',
+                        "Apple's Field",
                         style: GoogleFonts.lato(
                           textStyle: context.textTheme.headlineMedium,
                         ),
@@ -232,7 +232,7 @@ class _GuestMainPageState extends State<StaffMainPage> {
                   ),
                   10.cl(10, 20).wSpacer,
                   Text(
-                    'Nosk',
+                    "Apple's Field",
                     style: context.textTheme.headlineMedium,
                   ),
                   const Spacer(),

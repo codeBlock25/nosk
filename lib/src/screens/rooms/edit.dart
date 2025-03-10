@@ -5,7 +5,6 @@ import 'package:cloudinary/cloudinary.dart';
 import 'package:extension_helpers/extension_helpers.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:intl/intl.dart';
 import 'package:nosk/generated/assets.dart';
@@ -16,7 +15,6 @@ import 'package:nosk/src/screens/rooms/create.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:tinycolor2/tinycolor2.dart';
 import 'package:validatorless/validatorless.dart';
-import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
 
 Future<File> fileFromImageUrl({required String url}) async {
@@ -130,7 +128,7 @@ class _EditRoomPageState extends State<EditRoomPage> {
             file: file.path,
             fileBytes: file.readAsBytesSync(),
             resourceType: CloudinaryResourceType.image,
-            folder: 'nosk',
+            folder: "Apple's Field",
             fileName: fileName,
           );
           if (response.isSuccessful) {
@@ -332,7 +330,7 @@ class _EditRoomPageState extends State<EditRoomPage> {
                   validator: Validatorless.multiple([
                     Validatorless.required('Price is required'),
                     Validatorless.regex(
-                        RegExp(r'^[\d|\.|\,]+'), 'Price must be a number')
+                        RegExp(r'^[\d|.,]+'), 'Price must be a number')
                   ]),
                   inputFormatters: [NumberFormatter()],
                   decoration: InputDecoration(

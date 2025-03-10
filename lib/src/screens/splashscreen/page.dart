@@ -78,7 +78,7 @@ class _SplashPageState extends State<SplashPage> {
                 fit: BoxFit.fitWidth,
               ),
               Text(
-                'Nosk',
+                "Apple's Field",
                 style: context.textTheme.headlineMedium,
               )
             ],

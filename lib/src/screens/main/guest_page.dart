@@ -324,7 +324,7 @@ class _GuestMainPageState extends State<GuestMainPage> {
                   ),
                   10.cl(10, 20).wSpacer,
                   Text(
-                    'Nosk',
+                    "Apple's Field",
                     style: context.textTheme.headlineMedium,
                   ),
                   const Spacer(),

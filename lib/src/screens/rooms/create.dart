@@ -131,7 +131,7 @@ class _CreateRoomPageState extends State<CreateRoomPage> {
             file: file.path,
             fileBytes: file.readAsBytesSync(),
             resourceType: CloudinaryResourceType.image,
-            folder: 'nosk',
+            folder: "Apple's Field",
             fileName: fileName,
           );
           if (response.isSuccessful) {

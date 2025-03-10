@@ -13,12 +13,12 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 final AppTheme appTheme = AppTheme(
   palette: AppThemePalette(
-    primaryColor: const Color(0xff224CF0),
-    primaryColorDark: const Color(0xff224CF0),
-    primaryColorLight: const Color(0xff224CF0),
+    primaryColor: const Color(0xffc23b3b),
+    primaryColorDark: const Color(0xffe12929),
+    primaryColorLight: const Color(0xff9a2929),
     background: const Color(0xffEAEAEA),
     backgroundDark: const Color(0xff141416),
-    error: const Color(0xffd51134),
+    error: const Color(0xffff002f),
     errorContainer: const Color(0xffe5899a),
     secondary: const Color(0xff091739),
     tertiary: const Color(0xff272c38),
@@ -43,7 +43,7 @@ class App extends StatelessWidget {
         ScreenType screenType,
       ) {
         return GetMaterialApp(
-          title: 'Nosk',
+          title: "Apple's Field",
           initialRoute: SplashPage.route.path(),
           unknownRoute: OuterPageNotFound.route.page(),
           builder: (BuildContext context, Widget? child) {
