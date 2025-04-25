@@ -34,7 +34,7 @@ class _OuterPageNotFoundState extends State<OuterPageNotFound> {
           Image.asset(
             Assets.iconsIcon,
             fit: BoxFit.fitHeight,
-            height: 45.cl(50, 100),
+            height: 30.cl(50, 100),
           ).marginOnly(
             top: context.mediaQueryPadding.top.division(2.6).toDouble(),
             bottom: 10.cl(10, 20),
@@ -60,10 +60,12 @@ class _OuterPageNotFoundState extends State<OuterPageNotFound> {
           ElevatedButton.icon(
             onPressed: SplashPage.route.startAt,
             style: ButtonStyle(
-                minimumSize: Size(60.cl(100, 350), 30.cl(40, 60)).all,
-                shape: RoundedRectangleBorder(
-                  borderRadius: 16.cl(10, 35).brcCircle,
-                ).all),
+              minimumSize: Size(60.cl(100, 350), 28.cl(40, 60)).all,
+              elevation: 0.0.all,
+              shape: RoundedRectangleBorder(
+                borderRadius: 16.cl(10, 35).brcCircle,
+              ).all,
+            ),
             icon: HeroIcon(HeroIcons.arrowPath),
             label: Text(
               'Try Again',

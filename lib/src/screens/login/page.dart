@@ -27,13 +27,13 @@ class LoginPage extends RouteFulWidget {
   String path() => '/login';
 
   @override
-  String title() => 'Login to Nosk';
+  String title() => 'Login to Apple Field Hotel & Suite';
 }
 
 class _LoginPageState extends State<LoginPage> {
   final AuthLogic _authLogic = AuthLogic.to;
   final UserLogic userLogic = UserLogic.to;
-  RxBool asAdmin = false.obs;
+  RxBool asAdmin = true.obs;
   RxBool isPasswordHidden = true.obs;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
           _formStateKey.currentState?.reset();
           if (mounted) {
             context.toast(
-              toastMessage: 'Welcome to Nosk Suite',
+              toastMessage: 'Welcome to Apple Field Hotel & Suite Suite',
               type: ToastSnackBarType.success,
               duration: 2.seconds,
               onClosed: () async {
@@ -141,96 +141,96 @@ class _LoginPageState extends State<LoginPage> {
               ).center,
               10.cl(10, 20).hSpacer,
               Text(
-                'Welcome back to Nosk, Please provide your details stating your user type.',
+                'Welcome back to Apple Field Hotel & Suite, Please provide your details.',
                 style: context.textTheme.bodySmall,
                 textAlign: TextAlign.center,
               ).center.addOpacity(0.6),
-              Stack(
-                children: <Widget>[
-                  Obx(
-                    () => AnimatedPositioned(
-                      duration: 300.milliseconds,
-                      curve: Curves.decelerate,
-                      left: asAdmin.isFalse.whenNull(
-                        use: 12.cl(5, 10),
-                        elseUse: 100.cw(100, 500).division(2) -
-                            15.cl(10, 40).square.toDouble(),
-                      ),
-                      top: 2.cl(2, 5),
-                      child: Container(
-                        width: 100.cw(100, 500).division(2.2) -
-                            15.cl(10, 40).square.toDouble(),
-                        height: context.breakpoint.largerThan(MOBILE).when(
-                              use: 26.cl(20, 30),
-                              elseUse: 26.cl(20, 60),
-                            ),
-                        decoration: BoxDecoration(
-                          color: context.theme.scaffoldBackgroundColor,
-                          borderRadius: 50.dp.rc.brAll,
-                        ),
-                      ).ignore,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          asAdmin.value = false;
-                        },
-                        style: ButtonStyle(
-                          overlayColor: Colors.transparent.all,
-                          shadowColor: Colors.transparent.all,
-                          surfaceTintColor: Colors.transparent.all,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: 50.dp.rc.brAll,
-                          ).all,
-                        ),
-                        child: Text(
-                          'As Guest',
-                          style: context.textTheme.headlineSmall,
-                        ),
-                      )
-                          .marginSymmetric(
-                            horizontal: 12.cl(5, 40),
-                          )
-                          .expand,
-                      TextButton(
-                        onPressed: () {
-                          asAdmin.value = true;
-                        },
-                        style: ButtonStyle(
-                          overlayColor: Colors.transparent.all,
-                          shadowColor: Colors.transparent.all,
-                          surfaceTintColor: Colors.transparent.all,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: 50.dp.rc.brAll,
-                          ).all,
-                        ),
-                        child: Text(
-                          'As Staff',
-                          style: context.textTheme.headlineSmall,
-                        ),
-                      )
-                          .marginSymmetric(
-                            horizontal: 12.cl(5, 40),
-                          )
-                          .expand
-                    ],
-                  ),
-                ],
-              ).contain(
-                width: 100.w,
-                padding: 5.cl(5, 10).pdY,
-                margin: 10.cl(10, 20).pdX.copyWith(
-                      top: 25.cl(35, 55),
-                      bottom: 10.cl(15, 45),
-                    ),
-                decoration: BoxDecoration(
-                  color: context.theme.scaffoldBackgroundColor.darken(5),
-                  borderRadius: 50.dp.rc.brAll,
-                ),
-              ),
+              // Stack(
+              //   children: <Widget>[
+              //     Obx(
+              //       () => AnimatedPositioned(
+              //         duration: 300.milliseconds,
+              //         curve: Curves.decelerate,
+              //         left: asAdmin.isFalse.whenNull(
+              //           use: 12.cl(5, 10),
+              //           elseUse: 100.cw(100, 500).division(2) -
+              //               15.cl(10, 40).square.toDouble(),
+              //         ),
+              //         top: 2.cl(2, 5),
+              //         child: Container(
+              //           width: 100.cw(100, 500).division(2.2) -
+              //               15.cl(10, 40).square.toDouble(),
+              //           height: context.breakpoint.largerThan(MOBILE).when(
+              //                 use: 26.cl(20, 30),
+              //                 elseUse: 26.cl(20, 60),
+              //               ),
+              //           decoration: BoxDecoration(
+              //             color: context.theme.scaffoldBackgroundColor,
+              //             borderRadius: 50.dp.rc.brAll,
+              //           ),
+              //         ).ignore,
+              //       ),
+              //     ),
+              //     Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //       children: [
+              //         TextButton(
+              //           onPressed: () {
+              //             asAdmin.value = false;
+              //           },
+              //           style: ButtonStyle(
+              //             overlayColor: Colors.transparent.all,
+              //             shadowColor: Colors.transparent.all,
+              //             surfaceTintColor: Colors.transparent.all,
+              //             shape: RoundedRectangleBorder(
+              //               borderRadius: 50.dp.rc.brAll,
+              //             ).all,
+              //           ),
+              //           child: Text(
+              //             'As Guest',
+              //             style: context.textTheme.headlineSmall,
+              //           ),
+              //         )
+              //             .marginSymmetric(
+              //               horizontal: 12.cl(5, 40),
+              //             )
+              //             .expand,
+              //         TextButton(
+              //           onPressed: () {
+              //             asAdmin.value = true;
+              //           },
+              //           style: ButtonStyle(
+              //             overlayColor: Colors.transparent.all,
+              //             shadowColor: Colors.transparent.all,
+              //             surfaceTintColor: Colors.transparent.all,
+              //             shape: RoundedRectangleBorder(
+              //               borderRadius: 50.dp.rc.brAll,
+              //             ).all,
+              //           ),
+              //           child: Text(
+              //             'As Staff',
+              //             style: context.textTheme.headlineSmall,
+              //           ),
+              //         )
+              //             .marginSymmetric(
+              //               horizontal: 12.cl(5, 40),
+              //             )
+              //             .expand
+              //       ],
+              //     ),
+              //   ],
+              // ).contain(
+              //   width: 100.w,
+              //   padding: 5.cl(5, 10).pdY,
+              //   margin: 10.cl(10, 20).pdX.copyWith(
+              //         top: 25.cl(35, 55),
+              //         bottom: 10.cl(15, 45),
+              //       ),
+              //   decoration: BoxDecoration(
+              //     color: context.theme.scaffoldBackgroundColor.darken(5),
+              //     borderRadius: 50.dp.rc.brAll,
+              //   ),
+              // ),
               Obx(() {
                 return RichText(
                   text: TextSpan(
@@ -383,7 +383,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   children: [
                     TextSpan(
-                      text: " Nosk's,",
+                      text: " Apple Field Hotel & Suite's,",
                       style: context.textTheme.headlineSmall?.copyWith(
                         color: context.theme.primaryColor,
                       ),

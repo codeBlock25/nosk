@@ -27,7 +27,7 @@ class RegisterPage extends RouteFulWidget {
   String path() => '/register';
 
   @override
-  String title() => 'Register to Nosk';
+  String title() => 'Register to Apple Field Hotel & Suite';
 }
 
 class _RegisterPageState extends State<RegisterPage> {

@@ -7,6 +7,7 @@ class Assets {
   static const String iconsGoogleMap = 'assets/icons/google_map.png';
   static const String iconsIcon = 'assets/icons/icon.png';
   static const String iconsIndrive = 'assets/icons/indrive.png';
+  static const String iconsLogo = 'assets/icons/logo.png';
   static const String iconsUber = 'assets/icons/uber.png';
   static const String imagesError = 'assets/images/error.png';
   static const String imagesFlutterLogo = 'assets/images/flutter_logo.png';

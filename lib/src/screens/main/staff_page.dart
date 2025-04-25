@@ -40,11 +40,7 @@ class _GuestMainPageState extends State<StaffMainPage> {
     _tabs = [
       AppTab(
         label: 'Dashboard',
-        page: Container(
-          color: Colors.transparent,
-          width: 100.w,
-          height: 100.h,
-        ),
+        page: StaffDashboard(),
         icon: Icons.dashboard,
       ),
       AppTab(
@@ -309,7 +305,7 @@ class _GuestMainPageState extends State<StaffMainPage> {
         title: Row(
           children: <Widget>[
             Image.asset(
-              Assets.iconsIcon,
+              Assets.iconsLogo,
               width: 28.cl(18, 40),
               fit: BoxFit.fitWidth,
             ),

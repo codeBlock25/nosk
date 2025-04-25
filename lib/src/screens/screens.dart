@@ -21,3 +21,5 @@ export 'admins/page.dart';
 export 'house_keeping/page.dart';
 export 'room_service/page.dart';
 export 'check_in_out/page.dart';
+export 'dashboard/admin.dart';
+export 'dashboard/staff.dart';

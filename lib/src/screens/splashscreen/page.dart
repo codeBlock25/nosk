@@ -23,7 +23,7 @@ class SplashPage extends RouteFulWidget {
   String path() => '/';
 
   @override
-  String title() => 'Welcome to Nosk';
+  String title() => 'Welcome to Apple Field Hotel & Suite';
 }
 
 class _SplashPageState extends State<SplashPage> {
@@ -74,13 +74,9 @@ class _SplashPageState extends State<SplashPage> {
                 Assets.iconsIcon,
                 width: context.breakpoint
                     .largerThan(MOBILE)
-                    .when(use: 25.cw(100, 250), elseUse: 35.cw(50, 350)),
+                    .when(use: 33.cw(100, 350), elseUse: 40.cw(100, 450)),
                 fit: BoxFit.fitWidth,
               ),
-              Text(
-                "Apple's Field",
-                style: context.textTheme.headlineMedium,
-              )
             ],
           ).center.positionFill(),
           context.breakpoint

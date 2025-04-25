@@ -39,11 +39,9 @@ class _AdminMainPageState extends State<AdminMainPage> {
     _tabs = [
       AppTab(
         label: 'Dashboard',
-        page: Container(
-          color: Colors.transparent,
-          width: 100.w,
-          height: 100.h,
-        ),
+        page: AdminDashboard(changeTab: (int tab) {
+          selectedTab.value = tab;
+        }),
         icon: Icons.dashboard,
       ),
       AppTab(
@@ -63,7 +61,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
       AppTab(
         label: 'Staff Management',
         page: UsersPage(),
-        icon: Icons.people,
+        icon: Icons.work_rounded,
       ),
       AppTab(
         label: 'Admin Management',
@@ -87,24 +85,6 @@ class _AdminMainPageState extends State<AdminMainPage> {
           height: 100.h,
         ),
         icon: Icons.attach_money,
-      ),
-      AppTab(
-        label: 'Reports & Analytics',
-        page: Container(
-          color: Colors.transparent,
-          width: 100.w,
-          height: 100.h,
-        ),
-        icon: Icons.bar_chart,
-      ),
-      AppTab(
-        label: 'Feedback & Reviews',
-        page: Container(
-          color: Colors.transparent,
-          width: 100.w,
-          height: 100.h,
-        ),
-        icon: Icons.rate_review,
       ),
     ];
     selectedTab.listen((int selected) {
@@ -225,7 +205,7 @@ class _AdminMainPageState extends State<AdminMainPage> {
         title: Row(
           children: <Widget>[
             Image.asset(
-              Assets.iconsIcon,
+              Assets.iconsLogo,
               width: 22.cl(18, 34),
               fit: BoxFit.fitWidth,
             ),

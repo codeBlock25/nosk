@@ -111,6 +111,7 @@ extension NotificationExtension on BuildContext {
         duration: duration ?? const Duration(seconds: 3),
         dismissDirection: DismissDirection.vertical,
         showCloseIcon: true,
+        closeIconColor: Colors.white,
         behavior: SnackBarBehavior.floating,
       );
 }

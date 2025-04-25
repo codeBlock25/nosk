@@ -62,7 +62,7 @@ class _AccountScreenState extends State<AccountPage> {
             title: Row(
               children: [
                 Image.asset(
-                  Assets.iconsIcon,
+                  Assets.iconsLogo,
                   fit: BoxFit.fitHeight,
                   height: 28.cl(30, 40),
                 ),
@@ -212,7 +212,7 @@ class _AccountScreenState extends State<AccountPage> {
           title: Row(
         children: [
           Image.asset(
-            Assets.iconsIcon,
+            Assets.iconsLogo,
             fit: BoxFit.fitHeight,
             height: 28.cl(30, 40),
           ),
